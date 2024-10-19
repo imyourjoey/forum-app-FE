@@ -1,9 +1,16 @@
+import { Route, Routes } from "react-router-dom";
+import Joey from "./pages/Joey";
+import Landing from "./pages/Landing/Index";
+import NotFound from "./pages/NotFound/Index";
+
 function App() {
   return (
     <>
-      <div className="default-padding">
-        <button className="btn btn-primary btn-sm">Button</button>
-      </div>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/joey" element={<Joey />} />
+        <Route path="*" element={<NotFound />} /> {/* Handle 404 */}
+      </Routes>
     </>
   );
 }
