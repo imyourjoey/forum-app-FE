@@ -3,19 +3,22 @@ import SignUp from "./SignUp";
 
 function Authentication() {
   return (
-    <div className="flex justify-center mt-4">
+    <div className="flex flex-col items-center mt-8">
+      <div className="mb-8">
+        the truly <span className="ogg text-4xl">Anonymous</span> forum
+      </div>
       <div className="w-11/12 md:w-[600px]">
         <div role="tablist" className="tabs tabs-lifted">
           <input
             type="radio"
             name="my_tabs_2"
             role="tab"
-            className="tab"
+            className="tab !w-[100px]"
             aria-label="Sign In"
           />
           <div
             role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+            className="tab-content bg-base-100 border-base-300 rounded-box p-6 "
           >
             <SignIn />
           </div>
@@ -24,7 +27,7 @@ function Authentication() {
             type="radio"
             name="my_tabs_2"
             role="tab"
-            className="tab"
+            className="tab !w-[100px]"
             aria-label="Sign Up"
             defaultChecked
           />

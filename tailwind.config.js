@@ -11,9 +11,9 @@ export default {
     themes: [
       {
         professional: {
-          primary: "#c558fd", // Vibrant Purple
-          secondary: "#6c63ff", // Muted Indigo for complementary elements
-          accent: "#8e44ad", // Deep purple for accents
+          primary: "#DCFFB7", // Vibrant Purple
+          secondary: "#A8E4A0", // Muted Indigo for complementary elements
+          accent: "#228B22", // Deep purple for accents
           neutral: "#3d3d3d", // Neutral dark gray
           "base-100": "#ffffff", // White background for a clean look
           "base-200": "#f4f4f5", // Light gray background for contrast
