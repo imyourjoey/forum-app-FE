@@ -16,9 +16,5 @@ export const signUpUser = async (formData) => {
     body: JSON.stringify(formattedData),
   });
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
   return response.json();
 };

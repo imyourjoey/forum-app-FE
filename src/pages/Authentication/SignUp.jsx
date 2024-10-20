@@ -5,6 +5,8 @@ import { signUpUser } from "../../api/mutations";
 import { useMutation } from "@tanstack/react-query";
 
 function SignUp() {
+  const [error, setError] = useState({});
+  const [alert, setAlert] = useState({});
   const [formInput, setFormInput] = useState({
     username: "",
     password: "",
@@ -43,12 +45,19 @@ function SignUp() {
   const mutation = useMutation({
     mutationFn: signUpUser,
     onSuccess: (data) => {
-      // Handle success, e.g., redirect or show a message
-      console.log("User signed up successfully:", data);
-    },
-    onError: (error) => {
-      // Handle error
-      console.error("Error signing up:", error);
+      if (data.errors) {
+        setError(data.errors);
+      } else {
+        setError({});
+        setAlert({
+          show: true,
+          message: "User created successfully. Sign in now!",
+        });
+
+        setTimeout(() => {
+          setAlert({ show: false, message: "" });
+        }, 3000);
+      }
     },
   });
 
@@ -60,10 +69,7 @@ function SignUp() {
   };
 
   return (
-    <form
-      className="h-[450px] flex flex-col justify-between"
-      onSubmit={handleSubmit}
-    >
+    <form className=" flex flex-col justify-between" onSubmit={handleSubmit}>
       <div>
         <div className="text-2xl font-bold mb-3">Create a New Account</div>
         {/* Username Input */}
@@ -82,7 +88,11 @@ function SignUp() {
             />
           </label>
           <div className="px-0 label">
-            <span className="label-text-alt hidden">Bottom Left label</span>
+            {error.name && (
+              <span className="label-text-alt text-red-500">
+                {error.name[0]}
+              </span>
+            )}
           </div>
         </label>
 
@@ -102,7 +112,11 @@ function SignUp() {
             />
           </label>
           <div className="px-0 label">
-            <span className="label-text-alt hidden">Bottom Left label</span>
+            {error.password && (
+              <span className="label-text-alt text-red-500">
+                {error.password[0]}
+              </span>
+            )}
           </div>
         </label>
 
@@ -120,15 +134,23 @@ function SignUp() {
               onChange={handleConfirmPasswordChange}
             />
           </label>
-          <div className="px-0 label">
-            <span className="label-text-alt hidden">Bottom Left label</span>
-          </div>
         </label>
       </div>
 
-      <button className="btn btn-primary btn-block" disabled={!isFormValid}>
+      <button
+        className="btn btn-primary btn-block mt-12"
+        disabled={!isFormValid}
+      >
         Sign Up
       </button>
+
+      {alert.show && (
+        <div className="toast toast-top toast-center">
+          <div className="alert alert-info bg-secondary shadow-md">
+            <span>{alert.message}</span>
+          </div>
+        </div>
+      )}
     </form>
   );
 }
