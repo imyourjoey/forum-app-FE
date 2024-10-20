@@ -56,3 +56,19 @@ export const logoutUser = async () => {
 
   return response.json();
 };
+
+// ---------- LOG OUT ----------
+export const getPosts = async () => {
+  const token = Cookies.get("authToken");
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.json();
+};
