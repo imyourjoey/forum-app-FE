@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Joey from "./pages/Joey";
 import Landing from "./pages/Landing/Index";
 import NotFound from "./pages/NotFound/Index";
+import Feed from "./pages/Feed/Index";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/joey" element={<Joey />} />
-        <Route path="*" element={<NotFound />} /> {/* Handle 404 */}
+        <Route path="/feed" element={<Feed />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

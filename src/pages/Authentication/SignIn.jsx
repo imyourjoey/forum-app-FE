@@ -3,10 +3,12 @@ import IconPassword from "../../icons/IconPassword";
 import IconUsername from "../../icons/IconUsername";
 import { signInUser } from "../../api/mutations";
 import { useMutation } from "@tanstack/react-query";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
+  const navigate = useNavigate();
   const [error, setError] = useState({});
-  const [alert, setAlert] = useState({});
   const [formInput, setFormInput] = useState({
     username: "",
     password: "",
@@ -39,14 +41,11 @@ function SignIn() {
         setError(data.errors);
       } else {
         setError({});
-        setAlert({
-          show: true,
-          message: "Logged In Successfully",
-        });
+        Cookies.set("authToken", data.token, { secure: true });
+        Cookies.set("currentUsername", data.user.name, { secure: true });
+        Cookies.set("currentUser", data.user.id, { secure: true });
 
-        setTimeout(() => {
-          setAlert({ show: false, message: "" });
-        }, 3000);
+        navigate("/feed");
       }
     },
   });
@@ -62,7 +61,6 @@ function SignIn() {
     <form className="flex flex-col justify-between" onSubmit={handleSubmit}>
       <div>
         <div className="text-2xl font-bold mb-3">Sign In to Your Account</div>
-        {/* <div>{JSON.stringify(formInput)}</div> */}
         {/* Username Input */}
         <label className="form-control w-full">
           <div className="label px-0">
@@ -114,14 +112,6 @@ function SignIn() {
       >
         Sign In
       </button>
-
-      {alert.show && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-info bg-secondary shadow-md">
-            <span>{alert.message}</span>
-          </div>
-        </div>
-      )}
     </form>
   );
 }
