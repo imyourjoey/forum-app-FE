@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 // ---------- SIGN UP ----------
 export const signUpUser = async (formData) => {
   const formattedData = {
@@ -32,6 +34,24 @@ export const signInUser = async (formData) => {
       Accept: "application/json",
     },
     body: JSON.stringify(formattedData),
+  });
+
+  return response.json();
+};
+
+// ---------- LOG OUT ----------
+export const logoutUser = async () => {
+  const token = Cookies.get("authToken");
+  console.log(token);
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    // body: JSON.stringify(formattedData),
   });
 
   return response.json();
