@@ -1,6 +1,8 @@
 import { useState } from "react";
 import IconPassword from "../../icons/IconPassword";
 import IconUsername from "../../icons/IconUsername";
+import { signUpUser } from "../../api/mutations";
+import { useMutation } from "@tanstack/react-query";
 
 function SignUp() {
   const [formInput, setFormInput] = useState({
@@ -38,8 +40,30 @@ function SignUp() {
     formInput.confirmPassword &&
     formInput.confirmPassword.trim() !== "";
 
+  const mutation = useMutation({
+    mutationFn: signUpUser,
+    onSuccess: (data) => {
+      // Handle success, e.g., redirect or show a message
+      console.log("User signed up successfully:", data);
+    },
+    onError: (error) => {
+      // Handle error
+      console.error("Error signing up:", error);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isFormValid) {
+      mutation.mutate(formInput);
+    }
+  };
+
   return (
-    <div className="h-[450px] flex flex-col justify-between">
+    <form
+      className="h-[450px] flex flex-col justify-between"
+      onSubmit={handleSubmit}
+    >
       <div>
         <div className="text-2xl font-bold mb-3">Create a New Account</div>
         {/* Username Input */}
@@ -105,7 +129,7 @@ function SignUp() {
       <button className="btn btn-primary btn-block" disabled={!isFormValid}>
         Sign Up
       </button>
-    </div>
+    </form>
   );
 }
 
