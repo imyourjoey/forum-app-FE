@@ -1,7 +1,43 @@
+import { useState } from "react";
 import IconPassword from "../../icons/IconPassword";
 import IconUsername from "../../icons/IconUsername";
 
 function SignUp() {
+  const [formInput, setFormInput] = useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleUsernameChange = (e) => {
+    setFormInput({
+      ...formInput,
+      username: e.target.value,
+    });
+  };
+
+  const handlePasswordChange = (e) => {
+    setFormInput({
+      ...formInput,
+      password: e.target.value,
+    });
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setFormInput({
+      ...formInput,
+      confirmPassword: e.target.value,
+    });
+  };
+
+  const isFormValid =
+    formInput.username &&
+    formInput.username.trim() !== "" &&
+    formInput.password &&
+    formInput.password.trim() !== "" &&
+    formInput.confirmPassword &&
+    formInput.confirmPassword.trim() !== "";
+
   return (
     <div className="h-[450px] flex flex-col justify-between">
       <div>
@@ -17,6 +53,8 @@ function SignUp() {
               type="text"
               className="grow"
               placeholder="Enter Your Username"
+              value={formInput.username}
+              onChange={handleUsernameChange}
             />
           </label>
           <div className="px-0 label">
@@ -35,6 +73,8 @@ function SignUp() {
               type="password"
               className="grow"
               placeholder="Enter Your Password"
+              value={formInput.password}
+              onChange={handlePasswordChange}
             />
           </label>
           <div className="px-0 label">
@@ -52,6 +92,8 @@ function SignUp() {
               type="password"
               className="grow"
               placeholder="Confirm Your Password"
+              value={formInput.confirmPassword}
+              onChange={handleConfirmPasswordChange}
             />
           </label>
           <div className="px-0 label">
@@ -60,7 +102,9 @@ function SignUp() {
         </label>
       </div>
 
-      <button className="btn btn-primary btn-block">Sign Up</button>
+      <button className="btn btn-primary btn-block" disabled={!isFormValid}>
+        Sign Up
+      </button>
     </div>
   );
 }
