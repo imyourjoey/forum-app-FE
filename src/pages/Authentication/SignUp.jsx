@@ -69,7 +69,7 @@ function SignUp() {
   };
 
   return (
-    <form className=" flex flex-col justify-between" onSubmit={handleSubmit}>
+    <form className="flex flex-col justify-between" onSubmit={handleSubmit}>
       <div>
         <div className="text-2xl font-bold mb-3">Create a New Account</div>
         {/* Username Input */}

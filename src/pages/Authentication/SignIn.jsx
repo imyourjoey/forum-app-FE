@@ -1,8 +1,12 @@
 import { useState } from "react";
 import IconPassword from "../../icons/IconPassword";
 import IconUsername from "../../icons/IconUsername";
+import { signInUser } from "../../api/mutations";
+import { useMutation } from "@tanstack/react-query";
 
 function SignIn() {
+  const [error, setError] = useState({});
+  const [alert, setAlert] = useState({});
   const [formInput, setFormInput] = useState({
     username: "",
     password: "",
@@ -28,8 +32,34 @@ function SignIn() {
     formInput.password &&
     formInput.password.trim() !== "";
 
+  const mutation = useMutation({
+    mutationFn: signInUser,
+    onSuccess: (data) => {
+      if (data.errors) {
+        setError(data.errors);
+      } else {
+        setError({});
+        setAlert({
+          show: true,
+          message: "Logged In Successfully",
+        });
+
+        setTimeout(() => {
+          setAlert({ show: false, message: "" });
+        }, 3000);
+      }
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isFormValid) {
+      mutation.mutate(formInput);
+    }
+  };
+
   return (
-    <div className="h-[400px] flex flex-col justify-between">
+    <form className="flex flex-col justify-between" onSubmit={handleSubmit}>
       <div>
         <div className="text-2xl font-bold mb-3">Sign In to Your Account</div>
         {/* <div>{JSON.stringify(formInput)}</div> */}
@@ -69,15 +99,30 @@ function SignIn() {
             />
           </label>
           <div className="px-0 label">
-            <span className="label-text-alt hidden">Bottom Left label</span>
+            {error.name && (
+              <span className="label-text-alt text-red-500">
+                {error.name[0]}
+              </span>
+            )}
           </div>
         </label>
       </div>
 
-      <button className="btn btn-primary btn-block" disabled={!isFormValid}>
+      <button
+        className="btn btn-primary btn-block mt-12"
+        disabled={!isFormValid}
+      >
         Sign In
       </button>
-    </div>
+
+      {alert.show && (
+        <div className="toast toast-top toast-center">
+          <div className="alert alert-info bg-secondary shadow-md">
+            <span>{alert.message}</span>
+          </div>
+        </div>
+      )}
+    </form>
   );
 }
 
