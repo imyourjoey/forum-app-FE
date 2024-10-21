@@ -1,6 +1,7 @@
 import NavBar from "../../components/Navbar";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "../../api/mutations";
+import FeedItem from "./FeedItem";
 
 function Feed() {
   const { data: posts, isLoading } = useQuery({
@@ -13,24 +14,15 @@ function Feed() {
       <NavBar />
 
       <div className="center-container">
-        {isLoading ? <div>loading</div> : posts[0].title}
-
-        <div className="card bg-base-100 shadow-xl">
-          <div className="card-body">
-            <div className="text-gray-500 flex">
-              <div>Joey77</div> <div className="mx-1.5">•</div>
-              <div> 7 months ago</div>
-            </div>
-            <div className="text-3xl font-semibold my-2">
-              Free Speech Allowed
-            </div>
-
-            <div className="text-gray-500 flex">
-              <div>300 reactions</div> <div className="mx-1.5">•</div>
-              <div> 400 comments</div>
-            </div>
-          </div>
-        </div>
+        {isLoading ? (
+          <div className="mt-3">Loading...</div>
+        ) : (
+          posts.map((post) => (
+            <>
+              <FeedItem post={post} />
+            </>
+          ))
+        )}
       </div>
     </>
   );
