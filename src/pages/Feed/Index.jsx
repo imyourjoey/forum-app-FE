@@ -2,12 +2,25 @@ import NavBar from "../../components/Navbar";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "../../api/mutations";
 import FeedItem from "./FeedItem";
+import { useState } from "react";
+import Pagination from "../../components/PaginationButtons";
 
 function Feed() {
-  const { data: posts, isLoading } = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
+  const [currentPage, setCurrentPage] = useState(1);
+  const {
+    data: posts,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["posts", currentPage],
+    queryFn: () => getPosts(currentPage),
+    keepPreviousData: true,
   });
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    refetch();
+  };
 
   return (
     <>
@@ -17,11 +30,16 @@ function Feed() {
         {isLoading ? (
           <div className="mt-3">Loading...</div>
         ) : (
-          posts.map((post) => (
-            <>
-              <FeedItem post={post} />
-            </>
-          ))
+          <>
+            {posts.data.map((post) => (
+              <FeedItem key={post.id} post={post} />
+            ))}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={posts.last_page}
+              onPageChange={handlePageChange}
+            />
+          </>
         )}
       </div>
     </>
