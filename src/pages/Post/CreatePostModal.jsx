@@ -36,12 +36,12 @@ function CreatePostModal({ onClose, refetchPosts }) {
     mutationFn: createPosts,
     onSuccess: (data) => {
       if (data.errors) {
-        // setError(data.errors);
-        alert("error!");
+        alert("Error Submitting Post, Try Again Later!");
       } else {
-        alert("create Successful");
         onClose(); // Close the modal
         refetchPosts(); // Refetch posts
+        setTitle("");
+        setTextBody("");
       }
     },
   });

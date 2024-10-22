@@ -5,8 +5,10 @@ import FeedItem from "./FeedItem";
 import { useState } from "react";
 import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
+import { useNavigate } from "react-router-dom";
 
 function Feed() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const {
     data: posts,
@@ -31,6 +33,10 @@ function Feed() {
     document.getElementById("my_modal_2").close();
   };
 
+  const handleFeedItemClick = (postId) => {
+    navigate(`/post/${postId}`);
+  };
+
   return (
     <>
       <NavBar />
@@ -50,7 +56,11 @@ function Feed() {
               </button>
             </div>
             {posts.data.map((post) => (
-              <FeedItem key={post.id} post={post} />
+              <FeedItem
+                key={post.id}
+                post={post}
+                onClick={() => handleFeedItemClick(post.id)}
+              />
             ))}
             <Pagination
               currentPage={currentPage}
