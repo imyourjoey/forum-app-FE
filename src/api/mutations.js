@@ -92,3 +92,22 @@ export const createPosts = async (postData) => {
 
   return response.json();
 };
+
+// ---------- GET POSTS ----------
+export const getComments = async (postId) => {
+  const token = Cookies.get("authToken");
+
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.json();
+};
