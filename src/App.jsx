@@ -8,8 +8,30 @@ import Post from "./pages/Post/Index";
 import HotPosts from "./pages/HotPosts/Index";
 import MyPosts from "./pages/MyPosts/Index";
 import UserPosts from "./pages/UserPosts/Index";
+import Cookies from "js-cookie";
+import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Retrieve the current path from the location
+    const currentPath = location.pathname;
+
+    // Retrieve the previous path from cookies
+    const previousPath = Cookies.get("currentPage");
+
+    // Store the current page in a cookie as previous page
+    if (previousPath !== currentPath) {
+      // Update the previous page to the current page if it's different
+      Cookies.set("previousPage", previousPath);
+    }
+
+    // Store the current page in a cookie
+    Cookies.set("currentPage", currentPath);
+  }, [location.pathname]);
+
   return (
     <>
       <Routes>

@@ -45,7 +45,7 @@ function SignIn() {
         Cookies.set("currentUsername", data.user.name, { secure: true });
         Cookies.set("currentUser", data.user.id, { secure: true });
 
-        navigate("/feed");
+        navigate("/hot");
       }
     },
   });
