@@ -111,3 +111,20 @@ export const getComments = async (postId) => {
 
   return response.json();
 };
+
+// ---------- CREATE COMMENT ----------
+export const createComment = async (replyData) => {
+  const token = Cookies.get("authToken");
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(replyData),
+  });
+
+  return response.json();
+};
