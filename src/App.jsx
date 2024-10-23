@@ -7,6 +7,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Post from "./pages/Post/Index";
 import HotPosts from "./pages/HotPosts/Index";
 import MyPosts from "./pages/MyPosts/Index";
+import UserPosts from "./pages/UserPosts/Index";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
         <Route
           path="/post/:postId"
           element={<ProtectedRoute element={<Post />} />}
+        />
+        <Route
+          path="/user-posts/:userId"
+          element={<ProtectedRoute element={<UserPosts />} />}
         />
       </Routes>
     </>

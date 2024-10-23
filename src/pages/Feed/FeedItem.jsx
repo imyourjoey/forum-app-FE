@@ -1,6 +1,13 @@
 import { formatDistanceToNowStrict } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 function FeedItem({ post, onClick }) {
+  const navigate = useNavigate();
+
+  const handleUserClick = (e) => {
+    e.stopPropagation();
+    navigate(`/user-posts/${post.user.id}`); // Navigate to user profile with userId
+  };
   return (
     <>
       <div
@@ -9,7 +16,13 @@ function FeedItem({ post, onClick }) {
       >
         <div className="card-body">
           <div className="text-gray-600 flex text-sm md:text-base">
-            <div>{post.user.name}</div> <div className="mx-1.5">•</div>
+            <div
+              className="hover:text-gray-950 hover:underline"
+              onClick={handleUserClick}
+            >
+              {post.user.name}
+            </div>
+            <div className="mx-1.5">•</div>
             <div>
               {formatDistanceToNowStrict(new Date(post.created_at))} ago
             </div>
