@@ -8,6 +8,7 @@ import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Index";
+import BackToHotPostsButton from "../../components/BackToHotPostsButton";
 
 function UserPosts() {
   const { userId } = useParams();
@@ -45,6 +46,7 @@ function UserPosts() {
       ) : (
         <>
           <div className="center-container !py-6">
+            <BackToHotPostsButton />
             <div className="text-4xl font-semibold">
               {posts.data[0].user.name}
             </div>

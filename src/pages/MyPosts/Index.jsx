@@ -8,6 +8,7 @@ import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Loading from "../Loading/Index";
+import BackButton from "../../components/BackButton";
 
 function MyPosts() {
   const userId = Cookies.get("currentUser");
@@ -45,6 +46,7 @@ function MyPosts() {
       ) : (
         <>
           <div className="center-container !py-6">
+            <BackButton />
             <div className="text-4xl font-semibold mb-6">My Posts</div>
 
             {posts.data.map((post) => (

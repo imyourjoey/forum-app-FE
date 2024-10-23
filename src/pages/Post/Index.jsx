@@ -9,6 +9,7 @@ import CreateParentCommentModal from "../Comment/CreateParentCommentModal";
 import IconArrowLeft from "../../icons/IconArrowLeft";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Index";
+import Cookies from "js-cookie";
 
 // Recursive component to render comments and their replies with toggle
 const Comment = ({ comment, onReply }) => {
@@ -156,14 +157,14 @@ function Post() {
             <div className="flex mb-3">
               <div
                 className="flex items-center cursor-pointer text-gray-500 hover:text-gray-950"
-                onClick={() => navigate("/feed")}
+                onClick={() => navigate(Cookies.get("previousPage"))}
               >
                 <IconArrowLeft />
                 <p className="ms-0.5">Back</p>
               </div>
               <p className="text-gray-500 mx-1">•</p>
 
-              <p className=" text-gray-500">Posted by {post.user.name}</p>
+              <p className=" text-gray-500">{post.user.name}</p>
               <p className="text-gray-500 mx-1">•</p>
               <p className="text-gray-500">
                 {formatDistanceToNowStrict(new Date(post.created_at))} ago

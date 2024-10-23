@@ -6,6 +6,7 @@ import { logoutUser } from "../api/mutations";
 function NavBar() {
   const navigate = useNavigate();
   const currentUsername = Cookies.get("currentUsername");
+  const currentUser = Cookies.get("currentUser");
 
   const mutation = useMutation({
     mutationFn: logoutUser,
@@ -16,6 +17,8 @@ function NavBar() {
         Cookies.remove("authToken");
         Cookies.remove("currentUser");
         Cookies.remove("currentUsername");
+        Cookies.remove("currentPage");
+        Cookies.remove("previousPage");
         navigate("/");
       }
     },
@@ -45,7 +48,7 @@ function NavBar() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
-                <li onClick={() => navigate("/my-posts")}>
+                <li onClick={() => navigate(`/user-posts/${currentUser}`)}>
                   <a>My Posts</a>
                 </li>
                 <li onClick={handleLogout}>
