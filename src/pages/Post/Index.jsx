@@ -6,6 +6,9 @@ import { getComments } from "../../api/mutations"; // Import the getComments fun
 import { formatDistanceToNowStrict } from "date-fns";
 import CreateCommentModal from "../Comment/CreateCommentModal";
 import CreateParentCommentModal from "../Comment/CreateParentCommentModal";
+import IconChevronLeft from "../../icons/IconChevronLeft";
+import IconArrowLeft from "../../icons/IconArrowLeft";
+import { useNavigate } from "react-router-dom";
 
 // Recursive component to render comments and their replies with toggle
 const Comment = ({ comment, onReply }) => {
@@ -64,6 +67,8 @@ const Comment = ({ comment, onReply }) => {
 };
 
 function Post() {
+  const navigate = useNavigate();
+
   const { postId } = useParams();
   const [selectedComment, setSelectedComment] = useState(null); // Track the comment for replying
 
@@ -149,6 +154,15 @@ function Post() {
         <div className="my-6">
           <div>
             <div className="flex mb-3">
+              <p
+                className="flex items-center cursor-pointer text-gray-500 hover:text-gray-950"
+                onClick={() => navigate("/feed")}
+              >
+                <IconArrowLeft />
+                <p className="ms-0.5 ">Back</p>
+              </p>
+              <p className="text-gray-500 mx-1">•</p>
+
               <p className=" text-gray-500">Posted by {post.user.name}</p>
               <p className="text-gray-500 mx-1">•</p>
               <p className="text-gray-500">
