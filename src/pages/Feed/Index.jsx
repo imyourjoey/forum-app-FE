@@ -46,7 +46,7 @@ function Feed() {
           <div className="mt-3">Loading...</div>
         ) : (
           <>
-            <div className="text-4xl font-semibold mb-2">New Posts</div>
+            <div className="text-4xl font-semibold mb-2">New Posts 🎊</div>
             <div className="md:flex justify-between mb-6 text-xl items-center">
               <div>What's on your mind today?</div>
               <button
