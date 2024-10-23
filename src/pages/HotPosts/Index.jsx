@@ -1,13 +1,13 @@
 import NavBar from "../../components/Navbar";
 import { useQuery } from "@tanstack/react-query";
-import { getPosts } from "../../api/mutations";
-import FeedItem from "./FeedItem";
+import { getHotPosts } from "../../api/mutations";
+import FeedItem from "../Feed/FeedItem";
 import { useState } from "react";
 import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 
-function Feed() {
+function HotPosts() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const {
@@ -16,7 +16,7 @@ function Feed() {
     refetch,
   } = useQuery({
     queryKey: ["posts", currentPage],
-    queryFn: () => getPosts(currentPage),
+    queryFn: () => getHotPosts(currentPage),
     keepPreviousData: true,
   });
 
@@ -46,7 +46,7 @@ function Feed() {
           <div className="mt-3">Loading...</div>
         ) : (
           <>
-            <div className="text-4xl font-semibold mb-2">New Posts</div>
+            <div className="text-4xl font-semibold mb-2">Top Posts</div>
             <div className="md:flex justify-between mb-6 text-xl items-center">
               <div>What's on your mind today?</div>
               <button
@@ -86,4 +86,4 @@ function Feed() {
   );
 }
 
-export default Feed;
+export default HotPosts;

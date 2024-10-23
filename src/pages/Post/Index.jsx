@@ -154,13 +154,13 @@ function Post() {
         <div className="my-6">
           <div>
             <div className="flex mb-3">
-              <p
+              <div
                 className="flex items-center cursor-pointer text-gray-500 hover:text-gray-950"
                 onClick={() => navigate("/feed")}
               >
                 <IconArrowLeft />
                 <p className="ms-0.5 ">Back</p>
-              </p>
+              </div>
               <p className="text-gray-500 mx-1">•</p>
 
               <p className=" text-gray-500">Posted by {post.user.name}</p>
@@ -176,16 +176,12 @@ function Post() {
               {renderContentWithLinks(post.body)}
             </p>
           </div>
-
-          {/* Likes and Dislikes */}
-          <div className="flex gap-1">
-            <button className="btn btn-xs">👍 {post.likes}</button>
-            <button className="btn btn-xs">👎 {post.dislikes}</button>
-          </div>
         </div>
 
-        <div className="flex mb-2 items-end justify-between">
-          <h3 className="text-3xl font-semibold ">Comments</h3>
+        <div className="divider"></div>
+
+        <div className="flex items-end justify-between mb-6">
+          <h3 className="text-3xl font-semibold">Comments</h3>
           <button
             className="btn btn-neutral btn-sm "
             onClick={handleNewComment}

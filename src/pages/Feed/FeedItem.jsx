@@ -19,8 +19,6 @@ function FeedItem({ post, onClick }) {
           </div>
 
           <div className="text-gray-600 flex text-sm md:text-base">
-            <div>{post.reactions_count} Resonance</div>
-            <div className="mx-1.5">•</div>
             <div>
               {post.comments_count > 0
                 ? `${post.comments_count} comment${

@@ -128,3 +128,22 @@ export const createComment = async (replyData) => {
 
   return response.json();
 };
+
+// ---------- GET POSTS ----------
+export const getHotPosts = async (currentPage) => {
+  const token = Cookies.get("authToken");
+
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/posts/hot-this-month?page=${currentPage}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.json();
+};
