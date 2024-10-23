@@ -6,9 +6,9 @@ import { getComments } from "../../api/mutations"; // Import the getComments fun
 import { formatDistanceToNowStrict } from "date-fns";
 import CreateCommentModal from "../Comment/CreateCommentModal";
 import CreateParentCommentModal from "../Comment/CreateParentCommentModal";
-import IconChevronLeft from "../../icons/IconChevronLeft";
 import IconArrowLeft from "../../icons/IconArrowLeft";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loading/Index";
 
 // Recursive component to render comments and their replies with toggle
 const Comment = ({ comment, onReply }) => {
@@ -81,7 +81,7 @@ function Post() {
     return (
       <>
         <NavBar />
-        <div className="center-container mt-3">Loading post...</div>
+        <Loading />
       </>
     );
   }
