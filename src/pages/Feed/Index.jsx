@@ -6,8 +6,8 @@ import { useState } from "react";
 import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
-import IllusLoading from "../../assets/Illustrations/IllusLoading";
 import Loading from "../Loading/Index";
+import NavigationPill from "../../components/NavigationPill";
 
 function Feed() {
   const navigate = useNavigate();
@@ -50,6 +50,7 @@ function Feed() {
       ) : (
         <>
           <div className="center-container !py-6">
+            <NavigationPill />
             <div className="text-4xl font-semibold mb-2">New Posts 🎊</div>
             <div className="md:flex justify-between mb-6 text-xl items-center">
               <div>What's on your mind today?</div>

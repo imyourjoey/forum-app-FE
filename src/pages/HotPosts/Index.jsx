@@ -7,6 +7,7 @@ import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Index";
+import NavigationPill from "../../components/NavigationPill";
 
 function HotPosts() {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ function HotPosts() {
       ) : (
         <>
           <div className="center-container !py-6">
+            <NavigationPill />
             <div className="text-4xl font-semibold mb-2">Top Posts 🔥</div>
             <div className="md:flex justify-between mb-6 text-xl items-center">
               <div>What's on your mind today?</div>
