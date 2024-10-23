@@ -50,6 +50,7 @@ function CreatePostModal({ onClose, refetchPosts }) {
     <>
       <div>
         <form onSubmit={handleSubmit}>
+          <div className="text-2xl font-semibold">Create New Post</div>
           <label className="form-control w-full">
             <div className="label">
               <span className="label-text">Title</span>
