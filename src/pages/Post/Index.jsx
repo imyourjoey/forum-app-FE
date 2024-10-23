@@ -159,7 +159,7 @@ function Post() {
                 onClick={() => navigate("/feed")}
               >
                 <IconArrowLeft />
-                <p className="ms-0.5 ">Back</p>
+                <p className="ms-0.5">Back</p>
               </div>
               <p className="text-gray-500 mx-1">•</p>
 
@@ -172,7 +172,7 @@ function Post() {
             <h2 className="text-2xl md:text-4xl font-semibold mb-3">
               {post.title}
             </h2>
-            <p className="text-lg mb-5 whitespace-pre-line">
+            <p className="md:text-lg mb-5 whitespace-pre-line">
               {renderContentWithLinks(post.body)}
             </p>
           </div>
@@ -181,7 +181,7 @@ function Post() {
         <div className="divider"></div>
 
         <div className="flex items-end justify-between mb-6">
-          <h3 className="text-3xl font-semibold">Comments</h3>
+          <h3 className="text-2xl md:text-3xl font-semibold">Comments</h3>
           <button
             className="btn btn-neutral btn-sm "
             onClick={handleNewComment}

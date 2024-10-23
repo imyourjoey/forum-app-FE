@@ -6,6 +6,7 @@ import Feed from "./pages/Feed/Index";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Post from "./pages/Post/Index";
 import HotPosts from "./pages/HotPosts/Index";
+import MyPosts from "./pages/MyPosts/Index";
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
         <Route
           path="/hot"
           element={<ProtectedRoute element={<HotPosts />} />}
+        />
+        <Route
+          path="/my-posts"
+          element={<ProtectedRoute element={<MyPosts />} />}
         />
 
         <Route path="*" element={<NotFound />} />
