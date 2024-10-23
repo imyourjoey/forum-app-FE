@@ -5,6 +5,7 @@ import NavBar from "../../components/Navbar";
 import { getComments } from "../../api/mutations"; // Import the getComments function
 import { formatDistanceToNowStrict } from "date-fns";
 import CreateCommentModal from "../Comment/CreateCommentModal";
+import CreateParentCommentModal from "../Comment/CreateParentCommentModal";
 
 // Recursive component to render comments and their replies with toggle
 const Comment = ({ comment, onReply }) => {
@@ -101,7 +102,13 @@ function Post() {
   const closeModal = () => {
     setSelectedComment(null); // Clear the selected comment
     document.getElementById("createCommentModal").close();
+    document.getElementById("createParentCommentModal").close();
   };
+
+  const handleNewComment = () => {
+    document.getElementById("createParentCommentModal").showModal();
+  };
+
   function renderContentWithLinks(text) {
     // Updated regex to detect URLs with or without protocol
     const urlRegex =
@@ -163,7 +170,15 @@ function Post() {
           </div>
         </div>
 
-        <h3 className="text-2xl font-semibold mb-2">Comments</h3>
+        <div className="flex mb-2 items-end justify-between">
+          <h3 className="text-3xl font-semibold ">Comments</h3>
+          <button
+            className="btn btn-neutral btn-sm "
+            onClick={handleNewComment}
+          >
+            + New Comment
+          </button>
+        </div>
 
         <div className="card border-r">
           {comments.length === 0 ? (
@@ -196,6 +211,23 @@ function Post() {
               refetch={refetch}
             />
           )}
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>Close</button>
+        </form>
+      </dialog>
+
+      {/* Create Comment Modal */}
+      <dialog
+        id="createParentCommentModal"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <CreateParentCommentModal
+            post={post}
+            onClose={closeModal}
+            refetch={refetch}
+          />
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>Close</button>
