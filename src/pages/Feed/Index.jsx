@@ -6,6 +6,8 @@ import { useState } from "react";
 import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
+import IllusLoading from "../../assets/Illustrations/IllusLoading";
+import Loading from "../Loading/Index";
 
 function Feed() {
   const navigate = useNavigate();
@@ -41,11 +43,13 @@ function Feed() {
     <>
       <NavBar />
 
-      <div className="center-container !py-6">
-        {isLoading ? (
-          <div className="mt-3">Loading...</div>
-        ) : (
-          <>
+      {isLoading ? (
+        <>
+          <Loading />
+        </>
+      ) : (
+        <>
+          <div className="center-container !py-6">
             <div className="text-4xl font-semibold mb-2">New Posts 🎊</div>
             <div className="md:flex justify-between mb-6 text-xl items-center">
               <div>What's on your mind today?</div>
@@ -79,9 +83,9 @@ function Feed() {
                 <button>close</button>
               </form>
             </dialog>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

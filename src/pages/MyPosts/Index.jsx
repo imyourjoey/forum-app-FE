@@ -7,6 +7,7 @@ import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import Loading from "../Loading/Index";
 
 function MyPosts() {
   const userId = Cookies.get("currentUser");
@@ -39,11 +40,11 @@ function MyPosts() {
     <>
       <NavBar />
 
-      <div className="center-container !py-6">
-        {isLoading ? (
-          <div className="mt-3">Loading...</div>
-        ) : (
-          <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="center-container !py-6">
             <div className="text-4xl font-semibold mb-6">My Posts</div>
 
             {posts.data.map((post) => (
@@ -69,9 +70,9 @@ function MyPosts() {
                 <button>close</button>
               </form>
             </dialog>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -7,6 +7,7 @@ import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Loading from "../Loading/Index";
 
 function UserPosts() {
   const { userId } = useParams();
@@ -39,12 +40,17 @@ function UserPosts() {
     <>
       <NavBar />
 
-      <div className="center-container !py-6">
-        {isLoading ? (
-          <div className="mt-3">Loading...</div>
-        ) : (
-          <>
-            <div className="text-4xl font-semibold mb-6">My Posts</div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="center-container !py-6">
+            <div className="text-4xl font-semibold">
+              {posts.data[0].user.name}
+            </div>
+            <div className="text-lg mt-2 mb-6">
+              {posts.total} posts in total
+            </div>
 
             {posts.data.map((post) => (
               <FeedItem
@@ -69,9 +75,9 @@ function UserPosts() {
                 <button>close</button>
               </form>
             </dialog>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 }
