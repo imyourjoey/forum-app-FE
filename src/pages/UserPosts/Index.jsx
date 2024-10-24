@@ -50,38 +50,52 @@ function UserPosts() {
   return (
     <>
       <NavBar />
-      <div className="center-container !py-6">
-        <BackToHotPostsButton />
-        <div className="text-4xl font-semibold">
-          {postData.user.name || Cookies.get("currentUsername")}
-        </div>
-        <div className="text-lg mt-2 mb-6">
-          {postData.posts.total} posts in total
-        </div>
-
-        {postData.posts.data.map((post) => (
-          <FeedItem
-            key={post.id}
-            post={post}
-            onClick={() => handleFeedItemClick(post.id)}
-          />
-        ))}
-
-        <Pagination
-          currentPage={postData.posts.current_page}
-          totalPages={postData.posts.last_page}
-          onPageChange={handlePageChange}
-        />
-
-        <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
-            <CreatePostModal onClose={closeModal} refetchPosts={refetch} />
+      {postData.user ? (
+        <div className="center-container !py-6">
+          <BackToHotPostsButton />
+          <div className="text-4xl font-semibold">
+            {postData.user.name || Cookies.get("currentUsername")}
           </div>
-          <form method="dialog" className="modal-backdrop">
-            <button>Close</button>
-          </form>
-        </dialog>
-      </div>
+          <div className="text-lg mt-2 mb-6">
+            {postData.posts.total} posts in total
+          </div>
+
+          {postData.posts.data.map((post) => (
+            <FeedItem
+              key={post.id}
+              post={post}
+              onClick={() => handleFeedItemClick(post.id)}
+            />
+          ))}
+
+          <Pagination
+            currentPage={postData.posts.current_page}
+            totalPages={postData.posts.last_page}
+            onPageChange={handlePageChange}
+          />
+
+          <dialog
+            id="my_modal_2"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <CreatePostModal onClose={closeModal} refetchPosts={refetch} />
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button>Close</button>
+            </form>
+          </dialog>
+        </div>
+      ) : (
+        <div
+          className="center-container
+        "
+        >
+          <div className="mt-3 text-2xl font-semibold">
+            Oops! You haven't posted anything yet.
+          </div>
+        </div>
+      )}
     </>
   );
 }
