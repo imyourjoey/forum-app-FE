@@ -26,6 +26,7 @@ function CreateParentCommentModal({ post, onClose, refetch }) {
       if (data.errors) {
         alert("Error Submitting Comment. Try Again Later!");
       } else {
+        alert("Comment Successfully Submitted!");
         setReplyContent("");
         onClose();
         refetch();

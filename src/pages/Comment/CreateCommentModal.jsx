@@ -28,7 +28,7 @@ function CreateCommentModal({ comment, post, onClose, refetch }) {
       if (data.errors) {
         alert("Error Submitting Reply. Try Again Later!");
       } else {
-        alert("success!");
+        alert("Comment Successfully Submitted!");
         setReplyContent("");
         onClose();
         refetch();
