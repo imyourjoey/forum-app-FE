@@ -17,7 +17,7 @@ const LeaderboardItem3 = ({ user }) => {
       : `${count} ${count === 1 ? singular : plural}`;
 
   return (
-    <li className="card border bg-[#fae3cb] mb-2">
+    <li className="card border bg-[#fae3cb] mb-4 shadow-lg">
       <div className="card-body p-4 md:p-6">
         <div className="flex gap-x-4 md:gap-x-0">
           <div className="w-8/12 md:w-10/12">
