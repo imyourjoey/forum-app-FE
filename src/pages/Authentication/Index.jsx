@@ -5,7 +5,8 @@ function Authentication() {
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="mb-6">
-        a truly <span className="ogg text-4xl">Anonymous</span> online forum
+        a truly <span className="ogg font-semibold text-4xl">Anonymous</span>{" "}
+        online forum
       </div>
       <div className="w-11/12 md:w-[600px]">
         <div role="tablist" className="tabs tabs-lifted">
