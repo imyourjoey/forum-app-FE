@@ -1,6 +1,7 @@
 import IconBronze from "../../icons/IconBronze";
 import IconGold from "../../icons/IconGold";
 import IconSilver from "../../icons/IconSilver";
+import NameNavigate from "./NameNavigate";
 
 // LeaderboardItem3.js
 const LeaderboardItem3 = ({ user }) => {
@@ -25,7 +26,7 @@ const LeaderboardItem3 = ({ user }) => {
             <div className="flex items-center ">
               <IconSilver />
               <div className="ms-3 text-xl md:text-3xl font-semibold">
-                {user.name}
+                <NameNavigate user={user} />
               </div>
             </div>
             <div className="mt-2 text-xs md:text-base">

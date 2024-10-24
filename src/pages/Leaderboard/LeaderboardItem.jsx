@@ -16,13 +16,12 @@ const LeaderboardItem3 = ({ user }) => {
       : `${count} ${count === 1 ? singular : plural}`;
 
   return (
-    <li className="card border-2 mx-5 mb-2">
-      <div className="card-body p-2 md:p-4">
+    <li className="card border-2 mb-2">
+      <div className="card-body p-4 md:p-6">
         <div className="flex gap-x-4 md:gap-x-0">
           <div className="w-8/12 md:w-10/12">
             <div className="flex items-center ">
               <div className=" text-xl md:text-3xl font-semibold">
-                {user.name}
                 <NameNavigate user={user} />
               </div>
             </div>
