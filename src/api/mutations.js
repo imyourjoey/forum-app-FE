@@ -166,3 +166,19 @@ export const getMyPosts = async (userId, currentPage) => {
 
   return response.json();
 };
+
+// ---------- GET TOP USERS ----------
+export const getTopUsers = async () => {
+  const token = Cookies.get("authToken");
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/top-users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.json();
+};

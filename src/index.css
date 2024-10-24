@@ -43,3 +43,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.user-item {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.user-item.first {
+  background-color: gold; /* First place */
+  font-weight: bold;
+}
+
+.user-item.second {
+  background-color: silver; /* Second place */
+  font-weight: bold;
+}
+
+.user-item.third {
+  background-color: #cd7f32; /* Bronze color for third place */
+  font-weight: bold;
+}

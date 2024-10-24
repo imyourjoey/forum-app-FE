@@ -11,6 +11,7 @@ import UserPosts from "./pages/UserPosts/Index";
 import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import Leaderboard from "./pages/Leaderboard/Index";
 
 function App() {
   const location = useLocation();
@@ -55,6 +56,10 @@ function App() {
         <Route
           path="/user-posts/:userId"
           element={<ProtectedRoute element={<UserPosts />} />}
+        />
+        <Route
+          path="/leaderboard"
+          element={<ProtectedRoute element={<Leaderboard />} />}
         />
       </Routes>
     </>

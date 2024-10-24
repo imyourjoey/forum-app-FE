@@ -5,21 +5,22 @@ import FeedItem from "../Feed/FeedItem";
 import { useState } from "react";
 import Pagination from "../../components/PaginationButtons";
 import CreatePostModal from "../Post/CreatePostModal";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../Loading/Index";
 import BackToHotPostsButton from "../../components/BackToHotPostsButton";
+import Cookies from "js-cookie";
 
 function UserPosts() {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
+
   const {
-    data: posts,
+    data: postData,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["posts", currentPage],
+    queryKey: ["user-posts", currentPage],
     queryFn: () => getMyPosts(userId, currentPage),
     keepPreviousData: true,
   });
@@ -37,49 +38,50 @@ function UserPosts() {
     navigate(`/post/${postId}`);
   };
 
+  if (isLoading) {
+    return (
+      <>
+        <NavBar />
+        <Loading />
+      </>
+    );
+  }
+
   return (
     <>
       <NavBar />
+      <div className="center-container !py-6">
+        <BackToHotPostsButton />
+        <div className="text-4xl font-semibold">
+          {postData.user.name || Cookies.get("currentUsername")}
+        </div>
+        <div className="text-lg mt-2 mb-6">
+          {postData.posts.total} posts in total
+        </div>
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="center-container !py-6">
-            <BackToHotPostsButton />
-            <div className="text-4xl font-semibold">
-              {posts.data[0].user.name}
-            </div>
-            <div className="text-lg mt-2 mb-6">
-              {posts.total} posts in total
-            </div>
+        {postData.posts.data.map((post) => (
+          <FeedItem
+            key={post.id}
+            post={post}
+            onClick={() => handleFeedItemClick(post.id)}
+          />
+        ))}
 
-            {posts.data.map((post) => (
-              <FeedItem
-                key={post.id}
-                post={post}
-                onClick={() => handleFeedItemClick(post.id)}
-              />
-            ))}
-            <Pagination
-              currentPage={currentPage}
-              totalPages={posts.last_page}
-              onPageChange={handlePageChange}
-            />
-            <dialog
-              id="my_modal_2"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <CreatePostModal onClose={closeModal} refetchPosts={refetch} />
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
+        <Pagination
+          currentPage={postData.posts.current_page}
+          totalPages={postData.posts.last_page}
+          onPageChange={handlePageChange}
+        />
+
+        <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <CreatePostModal onClose={closeModal} refetchPosts={refetch} />
           </div>
-        </>
-      )}
+          <form method="dialog" className="modal-backdrop">
+            <button>Close</button>
+          </form>
+        </dialog>
+      </div>
     </>
   );
 }

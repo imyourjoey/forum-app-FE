@@ -37,14 +37,12 @@ function NavBar() {
             {currentUser ? (
               <label
                 htmlFor="my-drawer"
-                className="btn btn-ghost drawer-button text-2xl ogg"
+                className="btn btn-ghost drawer-button text-2xl"
               >
                 ums conf.
               </label>
             ) : (
-              <div className="text-2xl ogg ps-4 font-semibold">
-                ums confessions
-              </div>
+              <div className="text-2xl ps-4 font-semibold">ums confessions</div>
             )}
           </div>
           {currentUsername && (
@@ -53,7 +51,7 @@ function NavBar() {
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost text-2xl ogg font-semibold"
+                  className="btn btn-ghost text-2xl font-semibold"
                 >
                   {currentUsername}
                 </div>
