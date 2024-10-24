@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { createPosts } from "../../api/mutations";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function CreatePostModal({ onClose, refetchPosts }) {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [textBody, setTextBody] = useState("");
 
@@ -38,10 +41,13 @@ function CreatePostModal({ onClose, refetchPosts }) {
       if (data.errors) {
         alert("Error Submitting Post, Try Again Later!");
       } else {
-        onClose(); // Close the modal
-        refetchPosts(); // Refetch posts
         setTitle("");
         setTextBody("");
+        navigate("/feed");
+        onClose(); // Close the modal
+        if (Cookies.get("currentPage") === "/feed") {
+          refetchPosts(); // Refetch posts
+        }
       }
     },
   });

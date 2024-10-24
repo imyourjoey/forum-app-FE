@@ -3,6 +3,7 @@ import IconPassword from "../../icons/IconPassword";
 import IconUsername from "../../icons/IconUsername";
 import { signUpUser } from "../../api/mutations";
 import { useMutation } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 
 function SignUp() {
   const [error, setError] = useState({});
@@ -13,10 +14,18 @@ function SignUp() {
     confirmPassword: "",
   });
 
+  const hasCreatedUser = Cookies.get("hasCreatedUser") === "true";
+
   const handleUsernameChange = (e) => {
+    // Sanitize username input
+    const sanitizedUsername = e.target.value
+      .replace(/[^a-z0-9\-]/g, "") // Remove all characters except lowercase letters, numbers, and dashes
+      .replace(/\s+/g, "") // Remove all whitespace
+      .toLowerCase(); // Convert to lowercase
+
     setFormInput({
       ...formInput,
-      username: e.target.value,
+      username: sanitizedUsername,
     });
   };
 
@@ -54,9 +63,19 @@ function SignUp() {
           message: "User created successfully. Sign in now!",
         });
 
+        setFormInput({
+          username: "",
+          password: "",
+          confirmPassword: "",
+        });
+
         setTimeout(() => {
           setAlert({ show: false, message: "" });
         }, 3000);
+
+        setTimeout(() => {
+          Cookies.set("hasCreatedUser", "true", { expires: 365 });
+        }, 10000);
       }
     },
   });
@@ -72,6 +91,12 @@ function SignUp() {
     <form className="flex flex-col justify-between" onSubmit={handleSubmit}>
       <div>
         <div className="text-2xl font-bold mb-3">Create a New Account</div>
+        {hasCreatedUser && formInput.username && (
+          <div className="mb-3 text-red-500">
+            Looks like you've signed up using this device. No need to sign up
+            twice!
+          </div>
+        )}
         {/* Username Input */}
         <label className="form-control w-full">
           <div className="label px-0">
@@ -139,7 +164,7 @@ function SignUp() {
 
       <button
         className="btn btn-primary btn-block mt-12"
-        disabled={!isFormValid}
+        disabled={!isFormValid || hasCreatedUser}
       >
         Sign Up
       </button>

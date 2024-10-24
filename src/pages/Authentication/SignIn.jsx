@@ -39,6 +39,10 @@ function SignIn() {
     onSuccess: (data) => {
       if (data.errors) {
         setError(data.errors);
+        setFormInput({
+          username: "",
+          password: "",
+        });
       } else {
         setError({});
         Cookies.set("authToken", data.token, { secure: true });
