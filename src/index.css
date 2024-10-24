@@ -16,6 +16,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Holen-Vintage";
+  src: local("Holen-Vintage"),
+    url(./assets/fonts/Holen-Vintage.otf) format("truetype");
+  font-display: swap;
+}
+
 .center-container {
   max-width: 1040px;
   margin: auto;

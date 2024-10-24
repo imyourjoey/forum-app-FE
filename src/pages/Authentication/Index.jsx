@@ -15,6 +15,7 @@ function Authentication() {
             role="tab"
             className="tab !w-[100px]"
             aria-label="Sign In"
+            defaultChecked
           />
           <div
             role="tabpanel"
@@ -29,7 +30,6 @@ function Authentication() {
             role="tab"
             className="tab !w-[100px]"
             aria-label="Sign Up"
-            defaultChecked
           />
           <div
             role="tabpanel"
