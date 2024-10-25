@@ -11,7 +11,7 @@ function Authentication() {
         </span>{" "}
         online forum
       </div>
-      <div className="w-12/12 md:w-[600px]">
+      <div className="lg:w-[600px] mx-auto">
         <div role="tablist" className="tabs tabs-lifted">
           <input
             type="radio"
@@ -44,7 +44,7 @@ function Authentication() {
         </div>
       </div>
 
-      <div className="mt-2 text-gray-500 text-xs text-center px-10 mt">
+      <div className="mt-2 text-gray-500 text-xs text-center px-10">
         UMS Confessions is an unofficial site and is not affiliated with
         Universiti Malaysia Sabah in any way.
       </div>

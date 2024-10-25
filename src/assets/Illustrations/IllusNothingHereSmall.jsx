@@ -5,7 +5,7 @@ function IllusNothingHereSmall() {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1024 768"
         version="1.1"
-        className="md:w-[200px]"
+        className="w-[160px] md:w-[200px]"
       >
         <g stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">
           <g transform="translate(-42.000000, -146.000000)">

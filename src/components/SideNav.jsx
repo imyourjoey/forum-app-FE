@@ -21,7 +21,7 @@ function SideNav() {
         </li>
       </div>
       <div className="divider mt-auto !mb-1"></div>
-      <li className="text-sm">
+      <li onClick={() => navigate("/creator-note")} className="text-sm">
         <a>Creator's Note</a>
       </li>
       {/* <li className="text-sm">

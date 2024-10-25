@@ -47,13 +47,13 @@ function NavBar() {
           </div>
           {currentUsername && (
             <div className="flex-none">
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost text-2xl font-semibold"
+                  className="btn btn-ghost text-2xl font-semibold  max-w-[180px]"
                 >
-                  {currentUsername}
+                  <p className="truncate">{currentUsername}</p>
                 </div>
                 <ul
                   tabIndex={0}
