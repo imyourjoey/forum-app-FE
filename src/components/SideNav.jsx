@@ -19,10 +19,14 @@ function SideNav() {
         <li onClick={() => navigate(`/user-posts/${userId}`)}>
           <a>My Posts</a>
         </li>
-        {/* <li>
+      </div>
+      <div className="divider mt-auto !mb-1"></div>
+      <li className="text-sm">
+        <a>Creator's Note</a>
+      </li>
+      {/* <li className="text-sm">
         <a>Buy me a coffee</a>
       </li> */}
-      </div>
     </>
   );
 }

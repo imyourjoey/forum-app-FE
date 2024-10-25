@@ -12,6 +12,7 @@ import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Leaderboard from "./pages/Leaderboard/Index";
+import CreatorNote from "./pages/CreatorNote";
 
 function App() {
   const location = useLocation();
@@ -37,7 +38,6 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/joey" element={<Joey />} />
         <Route path="/feed" element={<ProtectedRoute element={<Feed />} />} />
         <Route
           path="/hot"
@@ -61,6 +61,7 @@ function App() {
           path="/leaderboard"
           element={<ProtectedRoute element={<Leaderboard />} />}
         />
+        <Route path="/creator-note" element={<CreatorNote />} />
       </Routes>
     </>
   );
