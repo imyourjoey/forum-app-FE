@@ -8,6 +8,8 @@ import CreatePostModal from "../Post/CreatePostModal";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Index";
 import NavigationPill from "../../components/NavigationPill";
+import IllusNothingHere from "../../assets/Illustrations/IllusNothingHere";
+import IllusNothingHereSmall from "../../assets/Illustrations/IllusNothingHereSmall";
 
 function Feed() {
   const navigate = useNavigate();
@@ -68,11 +70,22 @@ function Feed() {
                 onClick={() => handleFeedItemClick(post.id)}
               />
             ))}
-            <Pagination
-              currentPage={currentPage}
-              totalPages={posts.last_page}
-              onPageChange={handlePageChange}
-            />
+
+            {posts.data.length === 0 ? (
+              <div className="flex flex-col items-center border-t-2 border-b-2 py-10">
+                <IllusNothingHereSmall />
+                <div className="text-lg font-bold -mt-10 ogg tracking-wider">
+                  Nothing Here...
+                </div>
+              </div>
+            ) : (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={posts.last_page}
+                onPageChange={handlePageChange}
+              />
+            )}
+
             <dialog
               id="my_modal_2"
               className="modal modal-bottom sm:modal-middle"

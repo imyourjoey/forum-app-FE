@@ -7,7 +7,7 @@ function BackButton() {
   return (
     <>
       <div
-        className="flex items-center cursor-pointer text-gray-500 hover:text-gray-950 mb-1 w-fit"
+        className="flex items-center cursor-pointer text-gray-500 hover:text-gray-950 mb-3 w-fit"
         onClick={() => navigate(Cookies.get("previousPage"))}
       >
         <IconArrowLeft />

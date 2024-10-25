@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../Loading/Index";
 import BackToHotPostsButton from "../../components/BackToHotPostsButton";
 import Cookies from "js-cookie";
+import IllusNothingHere from "../../assets/Illustrations/IllusNothingHere";
 
 function UserPosts() {
   const { userId } = useParams();
@@ -54,10 +55,11 @@ function UserPosts() {
         <div className="center-container !py-6">
           <BackToHotPostsButton />
           <div className="text-4xl font-semibold">
-            {postData.user.name || Cookies.get("currentUsername")}
+            {postData.user.name || Cookies.get("currentUsername")}'s Posts
           </div>
           <div className="text-lg mt-2 mb-6">
-            {postData.posts.total} posts in total
+            {postData.posts.total} post{postData.posts.total === 1 ? "" : "s"}{" "}
+            in total
           </div>
 
           {postData.posts.data.map((post) => (
@@ -91,8 +93,21 @@ function UserPosts() {
           className="center-container
         "
         >
-          <div className="mt-3 text-2xl font-semibold">
-            Oops! You haven't posted anything yet.
+          <div className="mt-6 flex justify-center -translate-x-2">
+            <IllusNothingHere />
+          </div>
+          <div className="mt-1 text-2xl font-semibold text-center">Whoops!</div>
+          <div className="text-center mt-1">
+            This user hasn't posted anything yet
+          </div>
+
+          <div className="flex justify-center">
+            <button
+              className="btn btn-primary mt-4"
+              onClick={() => navigate("/feed")}
+            >
+              Back to New Posts
+            </button>
           </div>
         </div>
       )}

@@ -8,6 +8,7 @@ import LeaderboardItem from "./LeaderboardItem";
 import Loading from "../Loading/Index";
 import { format } from "date-fns";
 import BackButton from "../../components/BackToHotPostsButton";
+import IllusNothingHereSmall from "../../assets/Illustrations/IllusNothingHereSmall";
 
 function Leaderboard() {
   const {
@@ -64,6 +65,15 @@ function Leaderboard() {
             }
           })}
         </ul>
+
+        {topUsers.length === 0 && (
+          <div className="flex flex-col items-center border-t-2 border-b-2 py-10">
+            <IllusNothingHereSmall />
+            <div className="text-lg font-bold -mt-10 ogg tracking-wider">
+              Nothing Here...
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

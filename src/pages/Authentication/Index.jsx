@@ -1,14 +1,19 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import Cookies from "js-cookie";
 
 function Authentication() {
+  const authToken = Cookies.get("authToken");
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="mb-6">
-        a truly <span className="ogg font-semibold text-4xl">Anonymous</span>{" "}
+        a truly{" "}
+        <span className="ogg font-semibold text-3xl md:text-4xl">
+          Anonymous
+        </span>{" "}
         online forum
       </div>
-      <div className="w-11/12 md:w-[600px]">
+      <div className="w-12/12 md:w-[600px]">
         <div role="tablist" className="tabs tabs-lifted">
           <input
             type="radio"
@@ -41,11 +46,7 @@ function Authentication() {
         </div>
       </div>
 
-      <div className="mt-3 text-gray-500 text-xs">
-        "Created for the People, by the People"
-      </div>
-
-      <div className="mt-0.5 text-gray-500 text-xs">
+      <div className="mt-2 text-gray-500 text-xs text-center px-10 mt">
         UMS Confessions is an unofficial site and is not affiliated with
         Universiti Malaysia Sabah in any way.
       </div>
