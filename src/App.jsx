@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Joey from "./pages/Joey";
 import Landing from "./pages/Landing/Index";
 import NotFound from "./pages/NotFound/Index";
 import Feed from "./pages/Feed/Index";
