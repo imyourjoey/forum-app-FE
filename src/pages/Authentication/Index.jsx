@@ -1,9 +1,7 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import Cookies from "js-cookie";
 
 function Authentication() {
-  const authToken = Cookies.get("authToken");
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="mb-6">

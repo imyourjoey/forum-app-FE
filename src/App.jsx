@@ -26,11 +26,11 @@ function App() {
     // Store the current page in a cookie as previous page
     if (previousPath !== currentPath) {
       // Update the previous page to the current page if it's different
-      Cookies.set("previousPage", previousPath);
+      Cookies.set("previousPage", previousPath, { secure: true });
     }
 
     // Store the current page in a cookie
-    Cookies.set("currentPage", currentPath);
+    Cookies.set("currentPage", currentPath, { secure: true });
   }, [location.pathname]);
 
   return (

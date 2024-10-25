@@ -10,6 +10,7 @@ import IconArrowLeft from "../../icons/IconArrowLeft";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Index";
 import Cookies from "js-cookie";
+import IllusNothingHereSmall from "../../assets/Illustrations/IllusNothingHereSmall";
 
 // Recursive component to render comments and their replies with toggle
 const Comment = ({ comment, onReply }) => {
@@ -193,7 +194,12 @@ function Post() {
 
         <div className="card border-r">
           {comments.length === 0 ? (
-            <p>No comments yet. Be the first to comment!</p>
+            <div className="flex flex-col items-center  py-10">
+              <IllusNothingHereSmall />
+              <div className="text-lg font-bold -mt-10 ogg tracking-wider">
+                No comments yet...
+              </div>
+            </div>
           ) : (
             <div className="space-y-6 mb-4">
               {comments.map((comment) => (

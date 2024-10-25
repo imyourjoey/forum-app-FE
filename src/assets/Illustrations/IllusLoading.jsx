@@ -5,8 +5,7 @@ function IllusLoading({ width = "100px", height = "100px" }) {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1024 768"
         version="1.1"
-        width={width}
-        height={height}
+        className="md:w-[400px] md:mt-20"
       >
         <g
           id="react-group-271"
