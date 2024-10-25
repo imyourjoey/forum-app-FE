@@ -26,7 +26,7 @@ const Comment = ({ comment, onReply }) => {
             <p>{formatDistanceToNowStrict(new Date(comment.created_at))} ago</p>
           </div>
           <div className="my-2">
-            <p className="text-gray-700 whitespace-pre-line">
+            <p className="text-gray-700 whitespace-pre-line leading-tight">
               {comment.content}
             </p>
           </div>
@@ -153,7 +153,7 @@ function Post() {
     <>
       <NavBar />
       <div className="center-container">
-        <div className="my-6">
+        <div className="mt-6">
           <div>
             <div className="flex mb-3">
               <div
@@ -174,7 +174,7 @@ function Post() {
             <h2 className="text-2xl md:text-4xl font-semibold mb-3">
               {post.title}
             </h2>
-            <p className="md:text-lg mb-5 whitespace-pre-line">
+            <p className="md:text-lg mb-3 whitespace-pre-line">
               {renderContentWithLinks(post.body)}
             </p>
           </div>

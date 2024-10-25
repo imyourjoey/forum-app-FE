@@ -50,7 +50,7 @@ function HotPosts() {
         <>
           <div className="center-container !py-6">
             <NavigationPill />
-            <div className="text-4xl font-semibold mb-2">Top Posts 🔥</div>
+            <div className="text-4xl font-bold mb-2">Top Posts 🔥</div>
             <div className="md:flex justify-between mb-6 text-xl items-center">
               <div>What's on your mind today?</div>
               <button

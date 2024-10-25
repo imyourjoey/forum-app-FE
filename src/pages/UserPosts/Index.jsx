@@ -54,7 +54,7 @@ function UserPosts() {
       {postData.user ? (
         <div className="center-container !py-6">
           <BackToHotPostsButton />
-          <div className="text-4xl font-semibold">
+          <div className="text-4xl font-bold">
             {postData.user.name || Cookies.get("currentUsername")}'s Posts
           </div>
           <div className="text-lg mt-2 mb-6">
